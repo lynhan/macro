@@ -20,9 +20,9 @@ export default class Day extends Component {
         let totalFat = 0
         let totalCarb = 0
         this.props.data.forEach(function (item, index) {
-            totalProtein += parseInt(item.protein, 10)
-            totalFat += parseInt(item.fat, 10)
-            totalCarb += parseInt(item.carb, 10)
+            totalProtein += parseFloat(item.protein, 10)
+            totalFat += parseFloat(item.fat, 10)
+            totalCarb += parseFloat(item.carb, 10)
         })
 
         let today = new Date()
