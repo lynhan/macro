@@ -36,11 +36,11 @@ export default class Add extends Component {
     push(uid, postData) {
         var newPostKey = firebase
             .database()
-            .ref('user-posts')
+            .ref('users')
             .push()
             .key
         var updates = {}
-        updates['/user-posts/' + uid + '/' + newPostKey] = postData
+        updates['/users/' + uid + '/' + newPostKey] = postData
         return firebase.database().ref().update(updates)  // can use in future
     }
 

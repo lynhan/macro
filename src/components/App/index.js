@@ -49,7 +49,7 @@ export default class App extends Component {
         let this_ = this
         let dataRef = firebase
             .database()
-            .ref('user-posts/' + uid)
+            .ref('users/' + uid)
         dataRef.on('value', function (snapshot) {
             var data = snapshot.val()
             console.log('data', data)
