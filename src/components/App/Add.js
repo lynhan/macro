@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as firebase from 'firebase/firebase-browser'
 
 export default class Add extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -13,16 +14,25 @@ export default class Add extends Component {
         this.setFat = this.setFat.bind(this)
         this.setCarb = this.setCarb.bind(this)
         this.submit = this.submit.bind(this)
+        this.valid = this.valid.bind(this)
     }
+
+
     setProtein(event) {
         this.setState({ protein: event.target.value })
     }
+
+
     setFat(event) {
         this.setState({ fat: event.target.value })
     }
+
+
     setCarb(event) {
         this.setState({ carb: event.target.value })
     }
+
+
     push(uid, postData) {
         var newPostKey = firebase
             .database()
@@ -33,8 +43,22 @@ export default class Add extends Component {
         updates['/user-posts/' + uid + '/' + newPostKey] = postData
         return firebase.database().ref().update(updates)  // can use in future
     }
+
+
+    valid(num) {
+        return !isNaN(num) && num > -1
+    }
+
+
     submit(event) {
         var time = new Date()
+        if (! (this.valid(this.state.carb) &&
+                this.valid(this.state.protein) &&
+                this.valid(this.state.fat))) {
+                    alert("macros need to be numbers >= 0")
+                    return
+                }
+
         var data = Object.assign(
             {},
             this.state,
@@ -52,6 +76,8 @@ export default class Add extends Component {
             carb: 0,
         })
     }
+
+
     render() {
         return (
             <div className="add ">
