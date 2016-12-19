@@ -40,7 +40,7 @@ export default class Add extends Component {
             .push()
             .key
         var updates = {}
-        updates['/users/' + uid + '/' + newPostKey] = postData
+        updates['/users/' + uid + '/post/' + newPostKey] = postData
         return firebase.database().ref().update(updates)  // can use in future
     }
 

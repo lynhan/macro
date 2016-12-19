@@ -7,7 +7,7 @@ export default class Delete extends Component {
         if (user != null) {
             return firebase
             .database()
-            .ref('users/' + user.uid + '/' + e.target.id)
+            .ref('users/' + user.uid + '/post/' + e.target.id)
             .remove()
         } else {
             console.log("oh noes can't delete: no user")
